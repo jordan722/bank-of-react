@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
+import "./Credits.css";
 
 class Credits extends Component {
   constructor(props){
@@ -57,19 +58,19 @@ class Credits extends Component {
 
           <Link to="/">Home</Link>
           <br/>
-          Account Balance: {this.props.accountBalance}
+          <p class ="info">Account Balance: {this.props.accountBalance}</p>
           <br/>
-          Amount: <input name="amount" type="number" step="0.01" min="0" onChange={this.handleChange}></input>
+          <p class ="info">Amount: <input name="amount" type="number" step="0.01" min="0" onChange={this.handleChange}></input></p>
           <br/>
-          description: <input name="description" type="text" onChange={this.handleChange}></input>
-          <button onClick={this.handleSubmit}>Add Credit</button>
+          <p class ="info">description: <input name="description" type="text" onChange={this.handleChange}></input></p>
+          <button id="submit" onClick={this.handleSubmit}>Add Credit</button>
           
 
 
           <h2> Credits </h2>
 
           <table> {credits} </table>
-          Total Credits: {total}
+          <p id="total">Total Credits: {total}</p> 
         </div>
     );
   }
