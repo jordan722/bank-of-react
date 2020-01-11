@@ -24,6 +24,8 @@ class Credits extends Component {
           <h1>Bank of React</h1>
 
           <Link to="/">Home</Link>
+          <br/>
+          Account Balance: {this.props.accountBalance}
 
           <h2> Credits </h2>
 
