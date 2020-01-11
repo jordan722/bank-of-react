@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   addCredit = (obj) => {
-    let tmpArr = this.state.debits;
+    let tmpArr = this.state.credits;
     tmpArr[tmpArr.length] = obj;
     this.setState({
       credits: tmpArr
