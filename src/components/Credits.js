@@ -3,6 +3,38 @@ import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
 
 class Credits extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      amount: 0,
+      description: ""
+    }
+  }
+
+  handleChange = (event) =>{
+    if(event.target.name === "amount"){
+      this.setState({
+        amount: event.target.value
+      })
+    }else{
+      this.setState({
+        description: event.target.value
+      })
+    }
+  }
+
+  handleSubmit = () => {
+    let date = new Date();
+    let dateNow = date.getFullYear() + "-" + date.getMonth()+1 + "-" + date.getDate() + "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "Z";
+
+    let obj = {
+      date: dateNow,
+      description: this.state.description,
+      amount: parseInt(this.state.amount)
+    }
+    this.props.addCredit(obj)
+    //this.props.debits[this.props.debits.length] = 
+  }
 
   render() {
     var credits = [];
@@ -26,6 +58,13 @@ class Credits extends Component {
           <Link to="/">Home</Link>
           <br/>
           Account Balance: {this.props.accountBalance}
+          <br/>
+          Amount: <input name="amount" type="number" step="0.01" min="0" onChange={this.handleChange}></input>
+          <br/>
+          description: <input name="description" type="text" onChange={this.handleChange}></input>
+          <button onClick={this.handleSubmit}>Add Credit</button>
+          
+
 
           <h2> Credits </h2>
 

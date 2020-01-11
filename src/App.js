@@ -53,7 +53,24 @@ class App extends Component {
     }
 
     return (totalCredits - totalDebits).toFixed(2);
+  }
 
+  addDebit = (obj) => {
+    let tmpArr = this.state.debits;
+    tmpArr[tmpArr.length] = obj;
+    this.setState({
+      debits: tmpArr
+    })
+
+    console.log(this.state.debits[10].amount)
+  }
+
+  addCredit = (obj) => {
+    let tmpArr = this.state.debits;
+    tmpArr[tmpArr.length] = obj;
+    this.setState({
+      credits: tmpArr
+    })
   }
 
   componentDidMount(){
@@ -70,14 +87,14 @@ class App extends Component {
         <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
 
-    const DebitsComponent = () => (<Debits accountBalance={this.getBalance()} debits={this.state.debits}/>)
-    const CreditsComponent = () => (<Credits accountBalance={this.getBalance()} credits={this.state.credits}/>)
+    const DebitsComponent = () => (<Debits accountBalance={this.getBalance()} debits={this.state.debits} addDebit={this.addDebit}/>)
+    const CreditsComponent = () => (<Credits accountBalance={this.getBalance()} credits={this.state.credits} addCredit={this.addCredit}/>)
 
 
     return (
         <Router>
           <div>
-            <Route exact path="/" component={HomeComponent}/>
+            <Route exact path="/" render={HomeComponent}/>
             <Route exact path="/userProfile" render={UserProfileComponent}/>
             <Route exact path="/Debits" render={DebitsComponent}/>
             <Route exact path="/Credits" render={CreditsComponent}/>
